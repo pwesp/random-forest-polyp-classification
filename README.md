@@ -27,7 +27,7 @@ First, we extract Pyradiomics features from the segmented regions of interests i
 2. Run the 'train_random_forest.ipynb' notebook. Specify the output file from the pyradiomics feature extraction for the training dataset (step 1.3) in the variable 'feature_file_training_set' and the label file (step 2.1) in the variable 'label_file_training_set'.
 3. If succesfull, a trained random forest model will be stored under 'trained_models/trained_random_forest_model.joblib'.
 
-### 3. Test the random forest model
+## 3. Test the random forest model
 
 1. Create a '.csv' file containing the ground truth labels of the class you want to predict for the test dataset. An example for such a file can be found 'data/test_labels.csv'.
 2. Run the 'test_random_forest.ipynb' notebook. Specify the output file from the pyradiomics feature extraction for the test dataset (step 1.3) in the variable 'feature_file_test_set' and the label file (step 2.1) in the variable 'label_file_test_set'.
