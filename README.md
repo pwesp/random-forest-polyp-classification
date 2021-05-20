@@ -1,6 +1,6 @@
 # random-forest-polyp-classification
 
-This repository contains Python scripts and Jupyter notebooks to make (binary) predictions based on radiomics features, extracted from CT images, using a random forest classifier. The code has been developed in order to predict the histopathological class (benign vs. premalignant) of colorectal polyps detected in 3D CT colonography images. However, the code may be applied to other Radiomics tasks and classification problems.
+This repository contains Python scripts and Jupyter notebooks to make (binary) predictions based on radiomics features, extracted from CT images, using a random forest classifier. The code has been developed in order to predict the histopathological class (benign vs. premalignant) of colorectal polyps detected in 3D CT colonography images ([https://doi.org/10.1148/radiol.2021202363](https://doi.org/10.1148/radiol.2021202363)). However, the code may be applied to other Radiomics tasks and classification problems.
 
 A description of how to use the code in this repository can be found in section 1. to 3. below. For demonstration and test purposes, an artificial set of radiomics features and target labels containing random numbers are provided in the folder 'data'.
 
