@@ -12,10 +12,10 @@ from radiomics import featureextractor
 params_file  = 'source/feature_extraction_parameters.yamls'
 
 # File which contains the paths to CTC images and segmentations
-image_info_file  = '...'
+image_info_file  = 'example_image_info_train.csv'
 
 # File where the extracted pyradiomics features will be stored
-output_path  = 'extracted_radiomics_features/extracted_features.csv'
+output_path  = 'extracted_radiomics_features/extracted_example_features_train.csv'
 
 # Overwrite feature file if it already exists?
 overwrite = True
@@ -26,7 +26,7 @@ if os.path.exists(output_path) and overwrite:
         os.remove(output_path)
 
 # Collect scan info
-df_image_info = pd.read_csv(image_info_path, sep=',')
+df_image_info = pd.read_csv(image_info_file, sep=',')
 
 # Run main and extract pyradiomics features
 if __name__ == '__main__':
@@ -44,7 +44,7 @@ if __name__ == '__main__':
         # Get filepaths from dictionary
         print('\nImage file path: {}'.format(imageFilepath))
         print('Mask file path: {}'.format(maskFilepath))
-
+        
         # Sanity checks
         # 1. Do image and mask have same size?
         # 2. Is mask [0,1]?
@@ -59,7 +59,7 @@ if __name__ == '__main__':
             
         print('Image shape {}'.format(imageData.shape))
         print('Mask shape  {}'.format(maskData.shape))
-            
+        
         # Extract features
         try:
             print('Extract features...')

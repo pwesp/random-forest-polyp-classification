@@ -22,7 +22,9 @@ def extract_feature_importance(sklearn_model):
     for feature_idx in range(importances_estimators.shape[1]):
         importances_est    = importances_estimators[:,feature_idx]
         importances_est    = importances_est[importances_est!=0]
-        importance_est_std = np.std(importances_est)
+        importance_est_std = 0
+        if importances_est.shape[0] != 0:
+            importance_est_std = np.std(importances_est)
         importances_std.append(importance_est_std)
     
     importances_std = np.asarray(importances_std)
