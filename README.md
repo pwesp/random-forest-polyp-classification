@@ -6,6 +6,8 @@ The code has originally been developed for the publication "Machine Learning-bas
 
 A description of how to use the code in this repository can be found in section 1. to 3. below. For demonstration and test purposes, artificial training and test data is provided in the folder 'data'. The artificial data consists of 25 random images and segmentation masks (numpy arrays of size 50x50x50) for training and testing and a set of random labels (0 vs. 1) for each dataset. If the code runs successfully, radiomics features can be extracted for both datasets and a random forest model can be trained and tested.
 
+The random forest model which has been trained and evaluated in the publication for polyp classification is provided in 'trained_models/random_forest_polyp_classification_model.joblib'. The parameter file to set up the Pyradiomics feature extractor used in the publication can be found at 'source/feature_extraction_parameters_polyp_classification.yaml'.
+
 ## 0. Prerequisits
 
 The following things need to be at hand in order to use the code in this repository:
@@ -18,7 +20,7 @@ The following things need to be at hand in order to use the code in this reposit
   - Test images and segmentations might be stored in: 'data/test_data'
   - Training labels might be stored in: 'data/labels_train.csv'
   - Test labels might be stored in: 'data/labels_train.csv'
-- A Python environment running the Python version and containing the modules and packages specified in 'environment.yaml'
+- A Python environment running the Python version and containing the modules and packages specified in 'conda_environment.yaml'
 
 ## 1. Pyradiomics feature extraction
 
@@ -35,7 +37,7 @@ First, we extract Pyradiomics features from the segmented regions of interests i
 
 1. Create a '.csv' file containing the ground truth labels of the class you want to predict for the training dataset. An example for such a file can be found 'data/example_labels_train.csv'.
 2. Run the 'train_random_forest.ipynb' notebook. Specify the output file from the pyradiomics feature extraction for the training dataset (step 1.3) in the variable 'feature_file_training_set' and the label file (step 2.1) in the variable 'label_file_training_set'.
-3. If succesfull, a trained random forest model will be stored under 'trained_models/trained_random_forest_model.joblib'.
+3. If succesfull, a trained random forest model will be stored under 'trained_models/trained_example_random_forest_model.joblib'.
 
 ## 3. Test the random forest model
 

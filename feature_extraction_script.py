@@ -9,7 +9,7 @@ from radiomics import featureextractor
 
 
 # File which contains the extraction parameters for Pyradiomics
-params_file  = 'source/feature_extraction_parameters.yamls'
+params_file  = 'source/feature_extraction_parameters_example.yaml'
 
 # File which contains the paths to CTC images and segmentations
 image_info_file  = 'example_image_info_train.csv'
