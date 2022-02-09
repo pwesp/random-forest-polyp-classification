@@ -19,7 +19,7 @@ The following things need to be at hand in order to use the code in this reposit
   - Training images and segmentations might be stored in: 'data/training_data'
   - Test images and segmentations might be stored in: 'data/test_data'
   - Training labels might be stored in: 'data/labels_train.csv'
-  - Test labels might be stored in: 'data/labels_train.csv'
+  - Test labels might be stored in: 'data/labels_test.csv'
 - A Python environment running the Python version and containing the modules and packages specified in 'conda_environment.yaml'
 
 ## 1. Pyradiomics feature extraction
