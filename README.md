@@ -28,7 +28,7 @@ First, we extract Pyradiomics features from the segmented regions of interests i
 
 0. Start with the training dataset.
 1. Make sure images and segmentations are stored in the "nearly raw raster data" format, i.e. stored as '.nrrd' files
-2. Create a '.csv' file containing the exact paths of images containing the ROIs and the corresponding segmentation(s). Examples for such a files can be found in 'example_image_info_train.csv' and 'example_image_info_test.csv'
+2. Create a '.csv' file containing the exact paths of images containing the ROIs and the corresponding segmentation(s). Examples for such files can be found in 'example_image_info_train.csv' and 'example_image_info_test.csv'
 3. Run the Python script 'feature_extraction_script.py' to perform a pyradiomics feature extraction. The '.csv' file from step 2. has to be specified in the variable 'image_info_file'. Also, an output file for the extracted features has to be specified in the variable 'output_path'.
 4. The extracted features might be stored in 'extracted_radiomics_features'
 5. If you just extracted features for the training dataset, go back and repeat steps 1. to 4. for the test dataset.
