@@ -2,25 +2,29 @@
 
 This repository contains Python scripts and Jupyter notebooks to make (binary) predictions based on radiomics features extracted from CT images using a random forest classifier.
 
-The code has originally been developed for the publication "Machine Learning-based Differentiation of Benign and Premalignant Colorectal Polyps Detected with CT Colonography in an Asymptomatic Screening Population: A Proof-of-Concept Study" by Grosu, Wesp, et al. [Radiology, 2021] ([https://doi.org/10.1148/radiol.2021202363](https://doi.org/10.1148/radiol.2021202363)). The code was used to train a random forest model which can predict the histopathological class (benign vs. premalignant) of colorectal polyps detected in 3D CT colonography images. However, the code may just as well be applied to other Radiomics tasks and classification problems.
+The code has originally been developed for the publication "Machine Learning-based Differentiation of Benign and Premalignant Colorectal Polyps Detected with CT Colonography in an Asymptomatic Screening Population: A Proof-of-Concept Study" by Grosu, Wesp, et al. [Radiology, 2021] ([https://doi.org/10.1148/radiol.2021202363](https://doi.org/10.1148/radiol.2021202363)). In this study a random forest model was trained to predict the histopathological class (benign vs. premalignant) of colorectal polyps detected in 3D CT colonography images. However, the code can easily be adjusted to solve other Radiomics tasks and classification problems.
 
-A description of how to use the code in this repository can be found in section 1. to 3. below. For demonstration and test purposes, artificial training and test data is provided in the folder 'data'. The artificial data consists of 25 random images and segmentation masks (numpy arrays of size 50x50x50) for training and testing and a set of random labels (0 vs. 1) for each dataset. If the code runs successfully, radiomics features can be extracted for both datasets and a random forest model can be trained and tested.
+![radiomics](https://user-images.githubusercontent.com/56682642/154975607-7442c01e-d464-4dc8-aa80-5b52178f322f.png)
 
-The random forest model which has been trained and evaluated in the publication for polyp classification is provided in 'trained_models/random_forest_polyp_classification_model.joblib'. The parameter file to set up the Pyradiomics feature extractor used in the publication can be found at 'source/feature_extraction_parameters_polyp_classification.yaml'.
+A description of how to use the code in this repository can be found in section 0. to 3. below. For demonstration and test purposes, artificial training and test data is provided in the folder 'data'. The artificial data consists of 25 randomly generated images and segmentation masks (numpy arrays of size 50x50x50) for training and testing and a set of random labels (0 vs. 1) for each dataset. Radiomics features can be extracted for both datasets and a random forest model can be trained and tested.
+
+The random forest model which has been trained and evaluated in the publication is provided in 'trained_models/random_forest_polyp_classification_model.joblib'. The parameter file to set up the Pyradiomics [1] feature extractor used in the publication can be found at 'source/feature_extraction_parameters_polyp_classification.yaml'.
 
 ## 0. Prerequisits
 
 The following things need to be at hand in order to use the code in this repository:
 
-- CT images containing region of interests (ROIs) which should be classified (0 vs. 1)
-- A segmentation mask (or multiple segmentation masks) of each ROI
-- Ground truth labels for the images that should be used to train or test the classifier
-- Images, segmentations and labels need to be separated into a training dataset and a test dataset
-  - Training images and segmentations might be stored in: 'data/training_data'
-  - Test images and segmentations might be stored in: 'data/test_data'
-  - Training labels might be stored in: 'data/labels_train.csv'
-  - Test labels might be stored in: 'data/labels_test.csv'
-- A Python environment running the Python version and containing the modules and packages specified in 'conda_environment.yaml'
+- CT scans containing volumes of interests (VOIs) which should be subject to binary classification  (0 vs. 1)
+- A segmentation mask (or multiple segmentation masks) of each VOI
+- Ground truth labels (0, 1) for each VOI
+- Images, segmentations and labels are expected to be separated into a training dataset and a test dataset
+  - Training images and segmentations are stored in: 'data/training_data'
+  - Test images and segmentations are stored in: 'data/test_data'
+  - Training labels are stored in: 'data/labels_train.csv'
+  - Test labels are stored in: 'data/labels_test.csv'
+- A Python environment running the Python version and containing the modules and packages specified in the file 'conda_environment.yaml'
+
+The code is designed for three-dimensional image data (CT scans), but may be adopted for two-dimensional images.
 
 ## 1. Pyradiomics feature extraction
 
@@ -43,3 +47,7 @@ First, we extract Pyradiomics features from the segmented regions of interests i
 
 1. Create a '.csv' file containing the ground truth labels of the class you want to predict for the test dataset. An example for such a file can be found 'data/example_labels_test.csv'.
 2. Run the 'test_random_forest.ipynb' notebook. Specify the output file from the pyradiomics feature extraction for the test dataset (step 1.3) in the variable 'feature_file_test_set' and the label file (step 2.1) in the variable 'label_file_test_set'.
+
+## Resources
+
+1. Griethuysen, J. J. M., Fedorov, A., Parmar, C., Hosny, A., Aucoin, N., Narayan, V., Beets-Tan, R. G. H., Fillon-Robin, J. C., Pieper, S., Aerts, H. J. W. L. (2017). Computational Radiomics System to Decode the Radiographic Phenotype. Cancer Research, 77(21), e104–e107. [https://doi.org/10.1158/0008-5472.CAN-17-0339](https://doi.org/10.1158/0008-5472.CAN-17-0339)
