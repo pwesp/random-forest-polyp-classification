@@ -14,40 +14,45 @@ The random forest model which has been trained and evaluated in the publication 
 
 The following things need to be at hand in order to use the code in this repository:
 
-- CT scans containing volumes of interests (VOIs) which should be subject to binary classification  (0 vs. 1)
-- A segmentation mask (or multiple segmentation masks) of each VOI
-- Ground truth labels (0, 1) for each VOI
-- Images, segmentations and labels are expected to be separated into a training dataset and a test dataset
-  - Training images and segmentations are stored in: 'data/training_data'
-  - Test images and segmentations are stored in: 'data/test_data'
-  - Training labels are stored in: 'data/labels_train.csv'
-  - Test labels are stored in: 'data/labels_test.csv'
-- A Python environment running the Python version and containing the modules and packages specified in the file 'conda_environment.yaml'
+1. CT scans containing **volumes of interests** (VOIs) which should be subject to binary classification  (0 vs. 1)
+2. A **segmentation mask** (or multiple segmentation masks) of each VOI
+3. Ground truth **labels** (0, 1) for each VOI
+4. Images, segmentations and labels are expected to be separated into a training dataset and a test dataset
+    - Training images and segmentations are stored in: 'data/training_data'
+    - Test images and segmentations are stored in: 'data/test_data'
+    - Training labels are stored in: 'data/labels_train.csv'
+    - Test labels are stored in: 'data/labels_test.csv'
+5. A **Python environment** running the Python version and containing the modules and packages specified in the file 'conda_environment.yaml'
 
 The code is designed for three-dimensional image data (CT scans), but may be adopted for two-dimensional images.
 
 ## 1. Pyradiomics feature extraction
 
-First, we extract Pyradiomics features from the segmented regions of interests in the CT images. This step needs to be performed twice, once for the training dataset and again for the test dataset.
+First, we extract a set of **Pyradiomics features** from the segmented VOIs in the CT images. This step needs to be performed the training dataset and the test dataset.
 
-0. Start with the training dataset.
-1. Make sure images and segmentations are stored in the "nearly raw raster data" format, i.e. stored as '.nrrd' files
-2. Create a '.csv' file containing the exact paths of images containing the ROIs and the corresponding segmentation(s). Examples for such files can be found in 'example_image_info_train.csv' and 'example_image_info_test.csv'
+0. Images and segmentations are expected to be stored in the "nearly raw raster data" format, i.e. stored as '.nrrd' files
+1. Start with the training dataset
+2. Create a '.csv' file containing the exact file paths of images and segmentations for each VOI-segmentation pair. Two examples for such a file can be found in 'example_image_info_train.csv' and 'example_image_info_test.csv'
 3. Run the Python script 'feature_extraction_script.py' to perform a pyradiomics feature extraction. The '.csv' file from step 2. has to be specified in the variable 'image_info_file'. Also, an output file for the extracted features has to be specified in the variable 'output_path'.
-4. The extracted features might be stored in 'extracted_radiomics_features'
-5. If you just extracted features for the training dataset, go back and repeat steps 1. to 4. for the test dataset.
+    - The extracted features are expected to be stored in the folder 'extracted_radiomics_features' as 'extracted_example_features_train.csv' or 'extracted_example_features_test.csv', respectively
+5. If you just extracted features for the training dataset, go back and repeat steps 1. to 3. for the test dataset.
 
 ## 2. Train the random forest model
 
-1. Create a '.csv' file containing the ground truth labels of the class you want to predict for the training dataset. An example for such a file can be found 'data/example_labels_train.csv'.
+Second, we train a scikit-learn [2] RandomForestClassifier model.
+
+1. Create a '.csv' file containing the ground truth labels (0, 1) for the training dataset. An example for such a file can be found in 'data/example_labels_train.csv'.
 2. Run the 'train_random_forest.ipynb' notebook. Specify the output file from the pyradiomics feature extraction for the training dataset (step 1.3) in the variable 'feature_file_training_set' and the label file (step 2.1) in the variable 'label_file_training_set'.
-3. If succesfull, a trained random forest model will be stored under 'trained_models/trained_example_random_forest_model.joblib'.
+    - If succesfull, a trained random forest model will be stored under 'trained_models/trained_example_random_forest_model.joblib'.
 
 ## 3. Test the random forest model
 
-1. Create a '.csv' file containing the ground truth labels of the class you want to predict for the test dataset. An example for such a file can be found 'data/example_labels_test.csv'.
+Third, we test the model.
+
+1. Create a '.csv' file containing the ground truth labels (0, 1) for the test dataset. An example for such a file can be found 'data/example_labels_test.csv'.
 2. Run the 'test_random_forest.ipynb' notebook. Specify the output file from the pyradiomics feature extraction for the test dataset (step 1.3) in the variable 'feature_file_test_set' and the label file (step 2.1) in the variable 'label_file_test_set'.
 
 ## Resources
 
-1. Griethuysen, J. J. M., Fedorov, A., Parmar, C., Hosny, A., Aucoin, N., Narayan, V., Beets-Tan, R. G. H., Fillon-Robin, J. C., Pieper, S., Aerts, H. J. W. L. (2017). Computational Radiomics System to Decode the Radiographic Phenotype. Cancer Research, 77(21), e104–e107. [https://doi.org/10.1158/0008-5472.CAN-17-0339](https://doi.org/10.1158/0008-5472.CAN-17-0339)
+1. Griethuysen, J. J. M., Fedorov, A., Parmar, C., Hosny, A., Aucoin, N., Narayan, V., Beets-Tan, R. G. H., Fillon-Robin, J. C., Pieper, S., Aerts, H. J. W. L. (2017). Computational Radiomics System to Decode the Radiographic Phenotype. Cancer Research, 77(21), e104–e107. [https://doi.org/10.1158/0008-5472.CAN-17-0339](https://doi.org/10.1158/0008-5472.CAN-17-0339).
+2. Scikit-learn: Machine Learning in Python, Pedregosa et al., JMLR 12, pp. 2825-2830, 2011.
