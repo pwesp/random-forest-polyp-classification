@@ -12,7 +12,7 @@ def eval_fpr_tpr(y_test, y_score, positive_label=1):
     fpr = []
     tpr = []
     for i in range(2):
-        fpr_, tpr_, thr_ = roc_curve(y_test, y_score[:, i], positive_label)
+        fpr_, tpr_, thr_ = roc_curve(y_true = y_test, y_score = y_score[:, i], pos_label = positive_label)
         fpr.append(fpr_)
         tpr.append(tpr_)
     return fpr, tpr

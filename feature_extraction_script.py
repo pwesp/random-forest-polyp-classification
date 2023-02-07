@@ -4,7 +4,7 @@ import nrrd
 import numpy as np
 import os
 import pandas as pd
-from radiomics import featureextractor
+from   radiomics import featureextractor
 
 
 
@@ -12,7 +12,7 @@ from radiomics import featureextractor
 params_file  = 'source/feature_extraction_parameters_example.yaml'
 
 # File which contains the paths to CTC images and segmentations
-image_info_file  = 'example_image_info_train.csv'
+image_info_file = 'example_image_info_train.csv'
 
 # File where the extracted pyradiomics features will be stored
 output_path  = 'extracted_radiomics_features/extracted_example_features_train.csv'

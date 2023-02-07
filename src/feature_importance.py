@@ -66,12 +66,12 @@ def plot_feature_importance(features, importances):
     
     # Plot feature importance
     fig, ax = plt.subplots(figsize=(10,10))
-    sns.barplot(x="feature", y="importance", data=df_plot, order=features,color='r')
+    sns.barplot(x="feature", y="importance", data=df_plot, order=features, color='lightgray')
     ax.set_xticks(np.arange(0, len(features)))
     ax.set_xticklabels(features)
-    ax.tick_params(axis='x', labelsize=20)
-    ax.tick_params(axis='y', labelsize=20)
-    ax.set_xlabel('feature', fontsize=24)
-    ax.set_ylabel('importance', fontsize=24)
+    ax.tick_params(axis='x', labelsize=16, size=4)
+    ax.tick_params(axis='y', labelsize=16, size=4)
+    ax.set_xlabel('feature', fontsize=16)
+    ax.set_ylabel('importance', fontsize=16)
     plt.tight_layout()
     plt.show()
